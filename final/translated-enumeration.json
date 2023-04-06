@@ -1,0 +1,68 @@
+{
+    "month": {
+        "jan": 1,
+        "feb": 2,
+        "mar": 3,
+        "apr": 4,
+        "may": 5,
+        "jun": 6,
+        "jul": 7,
+        "aug": 8,
+        "sep": 9,
+        "oct": 10,
+        "nov": 11,
+        "dec": 12
+    },
+    "job": {
+        "management": 0,
+        "technician": 1,
+        "entrepreneur": 2,
+        "blue-collar": 3,
+        "unknown": 4,
+        "retired": 5,
+        "admin.": 6,
+        "services": 7,
+        "self-employed": 8,
+        "unemployed": 9,
+        "housemaid": 10,
+        "student": 11
+    },
+    "marital": {
+        "married": 0,
+        "single": 1,
+        "divorced": 2
+    },
+    "education": {
+        "tertiary": 0,
+        "secondary": 1,
+        "unknown": 2,
+        "primary": 3
+    },
+    "default": {
+        "no": 0,
+        "yes": 1
+    },
+    "housing": {
+        "no": 0,
+        "yes": 1
+    },
+    "loan": {
+        "no": 0,
+        "yes": 1
+    },
+    "contact": {
+        "unknown": 0,
+        "cellular": 1,
+        "telephone": 2
+    },
+    "poutcome": {
+        "unknown": 0,
+        "failure": 1,
+        "other": 2,
+        "success": 3
+    },
+    "y": {
+        "no": 0,
+        "yes": 1
+    }
+}
