@@ -3,7 +3,7 @@ from tqdm import tqdm
 import numpy as np
 
 # Load our Data From the CSV File in this Directory
-raw_df = read_csv('final/bank-full.csv', delimiter=';')
+raw_df = read_csv('final/orignal-data/bank-additional-full.csv', delimiter=';')
 # raw_df = read_csv('final/bank-additional-full.csv', delimiter=';')
 
 # translation dataframe to be populated
@@ -33,6 +33,7 @@ translation_columns = [
     "job",
     "marital",
     "education",
+    "month",
     "default",
     "housing",
     "loan",
@@ -99,7 +100,7 @@ for column_name in tqdm(raw_df.columns):
 translated_df = translated_df.rename(columns={'y': 'target'})
 
 # if you want to look at the dataframe
-translated_df.to_csv("final/bank-full-translated.csv")
+translated_df.to_csv("")
 
 # import json
 # print(json.dumps(translation_field_bank))
