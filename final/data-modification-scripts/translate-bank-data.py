@@ -1,6 +1,7 @@
 from pandas import read_csv, DataFrame
 from tqdm import tqdm
 import numpy as np
+import json
 
 # Load our Data From the CSV File in this Directory
 raw_df = read_csv('final/orignal-data/bank-additional-full.csv', delimiter=';')
@@ -28,24 +29,35 @@ translation_field_bank['month'] = {
     'dec': 12    
 }
 
+translation_field_bank['day_of_week'] = {
+    'sun': 1,
+    'mon': 2,
+    'tue': 3,
+    'wed': 4,
+    'thu': 5,
+    'fri': 6,
+    'sat': 7
+}
+
 # columns where we need to perform "translation"
 translation_columns = [
     "job",
     "marital",
     "education",
-    "month",
     "default",
     "housing",
     "loan",
     "contact",
     "month",
+    "day_of_week",
     "poutcome",
     "y"
 ]
 
 binary_dict = {
     "no": 0,
-    "yes": 1
+    "yes": 1,
+    "unknown": 2
 }
 
 print("Translating Data...")
@@ -53,7 +65,10 @@ print("Translating Data...")
 # iterate through each column in the dataframe
 for column_name in tqdm(raw_df.columns):
 
-    new_column_values = np.zeros(len(raw_df), dtype=np.int32)
+    new_column_values = np.zeros(len(raw_df), dtype=np.float64)
+
+    if column_name == "emp.var.rate":
+        print()
 
     if column_name not in translation_columns:
 
@@ -69,6 +84,15 @@ for column_name in tqdm(raw_df.columns):
         # iterate through each row and place the enumerated month instead of the string
         for index, row_value in enumerate(raw_df['month']):
             new_column_values[index] = translation_field_bank['month'][row_value]
+        
+        translated_df[column_name] = new_column_values
+        continue
+
+    elif column_name == "day_of_week":
+
+        # iterate through each row and place the enumerated day instead of the string
+        for index, row_value in enumerate(raw_df['day_of_week']):
+            new_column_values[index] = translation_field_bank['day_of_week'][row_value]
         
         translated_df[column_name] = new_column_values
         continue
@@ -100,7 +124,7 @@ for column_name in tqdm(raw_df.columns):
 translated_df = translated_df.rename(columns={'y': 'target'})
 
 # if you want to look at the dataframe
-translated_df.to_csv("")
+translated_df.to_csv("translated.df.csv")
 
-# import json
-# print(json.dumps(translation_field_bank))
+with open("translation_field_bank.json", "w") as f:
+    json.dump(translation_field_bank, f)

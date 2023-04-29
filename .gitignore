@@ -1,3 +1,7 @@
 # training data
 *.csv
 *.txt
+
+doak-images
+raw-data-plots
+normalized-plots
